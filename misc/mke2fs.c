@@ -72,7 +72,7 @@ extern int optind;
 extern int isatty(int);
 extern FILE *fpopen(const char *cmd, const char *mode);
 
-const char * program_name = "mke2fs";
+extern char * program_name;
 const char * device_name /* = NULL */;
 
 /* Command line options */
@@ -1967,6 +1967,7 @@ static void mke2fs_discard_blocks(ext2_filsys fs)
 
 int main (int argc, char *argv[])
 {
+  char *prgname = "mke2fs";
 	errcode_t	retval = 0;
 	ext2_filsys	fs;
 	badblocks_list	bb_list = 0;
@@ -1976,6 +1977,7 @@ int main (int argc, char *argv[])
 	io_manager	io_ptr;
 	char		tdb_string[40];
 	char		*hash_alg_str;
+  program_name = prgname;
 
 #ifdef ENABLE_NLS
 	setlocale(LC_MESSAGES, "");

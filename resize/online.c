@@ -16,7 +16,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-extern char *program_name;
+char *program_name;
 
 errcode_t online_resize_fs(ext2_filsys fs, const char *mtpt,
 			   blk_t *new_size, int flags EXT2FS_ATTR((unused)))

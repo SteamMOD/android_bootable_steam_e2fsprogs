@@ -1,5 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
+LOCAL_CFLAGS := -Os
 
 LOCAL_SRC_FILES := \
 	ext2_err.c \
@@ -67,17 +68,17 @@ LOCAL_SRC_FILES := \
 # get rid of this?!
 LOCAL_SRC_FILES += test_io.c
 
-LOCAL_MODULE := libext2fs
+LOCAL_MODULE := libsteam_ext2fs
 LOCAL_MODULE_TAGS := eng
 
-LOCAL_SYSTEM_SHARED_LIBRARIES := \
-	libext2_com_err \
-	libext2_uuid \
-	libext2_blkid \
-	libext2_e2p \
+LOCAL_STATIC_LIBRARIES := \
+	libsteam_ext2_com_err \
+	libsteam_ext2_uuid \
+	libsteam_ext2_blkid \
+	libsteam_ext2_e2p \
 	libc
 
-LOCAL_C_INCLUDES := external/e2fsprogs/lib
+LOCAL_C_INCLUDES := bootable/steam/e2fsprogs/lib
 
 LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_UNISTD_H \
@@ -104,5 +105,5 @@ LOCAL_CFLAGS := -Os -g -W -Wall \
 
 LOCAL_PRELINK_MODULE := false
 
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
 

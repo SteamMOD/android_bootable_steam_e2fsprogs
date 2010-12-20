@@ -38,7 +38,7 @@ extern char *optarg;
 #include "../version.h"
 #include "nls-enable.h"
 
-const char * program_name = "get_fstab";
+extern char * program_name;
 char * device_name;
 static int open_flag;
 static int root_type;
@@ -363,6 +363,9 @@ int main (int argc, char ** argv)
 	errcode_t retval;
 	ext2_filsys fs;
 	io_manager io_ptr;
+
+  char * prgstr = "get_fstab";
+  program_name = prgstr;
 
 	add_error_table(&et_ext2_error_table);
 

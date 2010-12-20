@@ -51,7 +51,7 @@ extern char *optarg;
 #define EXT2FS_ATTR(x)
 #endif
 
-static const char * program_name = "lsattr";
+extern char * program_name;
 
 static int all;
 static int dirs_opt;
@@ -157,9 +157,12 @@ static int lsattr_dir_proc (const char * dir_name, struct dirent * de,
 
 int main (int argc, char ** argv)
 {
+  char* prgstr = "lsattr";
 	int c;
 	int i;
 	int err, retval = 0;
+
+  prgram_name = prgstr;
 
 #ifdef ENABLE_NLS
 	setlocale(LC_MESSAGES, "");

@@ -62,7 +62,7 @@ extern int optind;
 #include "ext2fs/ext2fs.h"
 #include "nls-enable.h"
 
-const char * program_name = "badblocks";
+extern char * program_name;
 const char * done_string = N_("done                                \n");
 
 static int v_flag = 0;			/* verbose */
@@ -973,6 +973,7 @@ static unsigned int parse_uint(const char *str, const char *descr)
 
 int main (int argc, char ** argv)
 {
+  char * prgname = "badblocks";
 	int c;
 	char * device_name;
 	char * host_device_name = NULL;
@@ -993,6 +994,7 @@ int main (int argc, char ** argv)
 	int open_flag;
 	long sysval;
 
+  program_name = "badblocks";
 	setbuf(stdout, NULL);
 	setbuf(stderr, NULL);
 #ifdef ENABLE_NLS

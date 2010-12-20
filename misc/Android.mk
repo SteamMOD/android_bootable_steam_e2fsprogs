@@ -3,6 +3,7 @@ LOCAL_PATH := $(call my-dir)
 #########################################################################
 # Build mke2fs
 include $(CLEAR_VARS)
+LOCAL_CFLAGS := -Os
 
 LOCAL_SRC_FILES := \
 	mke2fs.c \
@@ -10,8 +11,8 @@ LOCAL_SRC_FILES := \
 	default_profile.c
 
 LOCAL_C_INCLUDES := \
-	external/e2fsprogs/lib \
-	external/e2fsprogs/e2fsck
+	bootable/steam/e2fsprogs/lib \
+	bootable/steam/e2fsprogs/e2fsck
 
 LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_UNISTD_H \
@@ -36,23 +37,24 @@ LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_EXT2_IOCTLS \
 	-DHAVE_LINUX_FD_H \
 	-DHAVE_TYPE_SSIZE_T \
-	-DHAVE_GETOPT_H
+	-DHAVE_GETOPT_H \
+	-Dmain=steam_mke2fs_main
 
 LOCAL_CFLAGS += -DNO_CHECK_BB
 
-LOCAL_MODULE := mke2fs
+LOCAL_MODULE := libsteam_mke2fs
 LOCAL_MODULE_TAGS := eng
 
-LOCAL_SYSTEM_SHARED_LIBRARIES := \
-	libext2fs \
-	libext2_blkid \
-	libext2_uuid \
-	libext2_profile \
-	libext2_com_err \
-	libext2_e2p \
+LOCAL_STATIC_LIBRARIES := \
+	libsteam_ext2fs \
+	libsteam_ext2_blkid \
+	libsteam_ext2_uuid \
+	libsteam_ext2_profile \
+	libsteam_ext2_com_err \
+	libsteam_ext2_e2p \
 	libc
 
-include $(BUILD_EXECUTABLE)
+include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE_CLASS := ETC
@@ -65,13 +67,14 @@ include $(BUILD_PREBUILT)
 #
 include $(CLEAR_VARS)
 
+LOCAL_CFLAGS := -Os
 LOCAL_SRC_FILES := \
 	tune2fs.c \
 	util.c
 
 LOCAL_C_INCLUDES := \
-	external/e2fsprogs/lib \
-	external/e2fsprogs/e2fsck
+	bootable/steam/e2fsprogs/lib \
+	bootable/steam/e2fsprogs/e2fsck
 
 LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_UNISTD_H \
@@ -96,29 +99,31 @@ LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_EXT2_IOCTLS \
 	-DHAVE_LINUX_FD_H \
 	-DHAVE_TYPE_SSIZE_T \
-	-DHAVE_GETOPT_H
+	-DHAVE_GETOPT_H \
+	-Dmain=steam_tune2fs_main
 
 LOCAL_CFLAGS += -DNO_CHECK_BB
 
-LOCAL_MODULE := tune2fs
+LOCAL_MODULE := libsteam_tune2fs
 LOCAL_MODULE_TAGS := eng
-LOCAL_SYSTEM_SHARED_LIBRARIES := \
-	libext2fs \
-	libext2_com_err \
+LOCAL_STATIC_LIBRARIES := \
+	libsteam_ext2fs \
+	libsteam_ext2_com_err \
 	libc
 
-include $(BUILD_EXECUTABLE)
+include $(BUILD_STATIC_LIBRARY)
 
 #########################################################################
 # Build badblocks
 #
 include $(CLEAR_VARS)
+LOCAL_CFLAGS := -Os
 
 LOCAL_SRC_FILES := \
 	badblocks.c
 
 LOCAL_C_INCLUDES := \
-	external/e2fsprogs/lib
+	bootable/steam/e2fsprogs/lib
 
 LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_UNISTD_H \
@@ -143,15 +148,16 @@ LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_EXT2_IOCTLS \
 	-DHAVE_LINUX_FD_H \
 	-DHAVE_TYPE_SSIZE_T \
-	-DHAVE_GETOPT_H
+	-DHAVE_GETOPT_H \
+	-Dmain=steam_badblocks_main
 
-LOCAL_MODULE := badblocks
+LOCAL_MODULE := libsteam_badblocks
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SYSTEM_SHARED_LIBRARIES := \
+LOCAL_STATIC_LIBRARIES := \
 	libext2fs \
 	libext2_com_err \
 	libc
 
-include $(BUILD_EXECUTABLE)
+include $(BUILD_STATIC_LIBRARY)
 

@@ -1698,7 +1698,7 @@ profile_iterator(void **iter_p, char **ret_name, char **ret_value)
 #include "argv_parse.h"
 #include "profile_helpers.h"
 
-const char *program_name = "test_profile";
+extern char *program_name;
 
 #define PRINT_VALUE	1
 #define PRINT_VALUES	2
@@ -1824,9 +1824,11 @@ const char *default_str = "[foo]\n\tbar=quux\n\tsub = {\n\t\twin = true\n}\n";
 
 int main(int argc, char **argv)
 {
+    char* prgname = "test_profile";
     profile_t	profile;
     long	retval;
     char	*cmd;
+    program_name = prgname;
 
     if (argc < 2) {
 	    fprintf(stderr, "Usage: %s filename [cmd argset]\n", program_name);

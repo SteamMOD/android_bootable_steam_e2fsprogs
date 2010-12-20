@@ -59,7 +59,7 @@ extern int optind;
 #include "../version.h"
 #include "nls-enable.h"
 
-const char *program_name = "tune2fs";
+extern char *program_name;
 char *device_name;
 char *new_label, *new_last_mounted, *new_UUID;
 char *io_options;
@@ -1533,10 +1533,12 @@ static int tune2fs_setup_tdb(const char *name, io_manager *io_ptr)
 
 int main(int argc, char **argv)
 {
+  char * prgname = "tune2fs";
 	errcode_t retval;
 	ext2_filsys fs;
 	struct ext2_super_block *sb;
 	io_manager io_ptr, io_ptr_orig = NULL;
+  program_name = prgname;
 
 #ifdef ENABLE_NLS
 	setlocale(LC_MESSAGES, "");

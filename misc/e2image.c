@@ -44,7 +44,7 @@ extern int optind;
 #include "../version.h"
 #include "nls-enable.h"
 
-const char * program_name = "e2image";
+extern char * program_name;
 char * device_name = NULL;
 
 static void usage(void)
@@ -637,6 +637,8 @@ int main (int argc, char ** argv)
 	int install_flag = 0;
 	int scramble_flag = 0;
 	int fd = 0;
+  char* prgname = "e2image";
+  program_name = prgname;
 
 #ifdef ENABLE_NLS
 	setlocale(LC_MESSAGES, "");

@@ -44,7 +44,7 @@ extern int optind;
 
 #define in_use(m, x)	(ext2fs_test_bit ((x), (m)))
 
-const char * program_name = "dumpe2fs";
+extern char * program_name;
 char * device_name = NULL;
 int hex_format = 0;
 
@@ -482,6 +482,8 @@ int main (int argc, char ** argv)
 	int		flags;
 	int		header_only = 0;
 	int		c;
+  char * prgname = "dumpe2fs";
+  program_name = prgname;
 
 #ifdef ENABLE_NLS
 	setlocale(LC_MESSAGES, "");

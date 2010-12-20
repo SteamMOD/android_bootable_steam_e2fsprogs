@@ -1,5 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
+LOCAL_CFLAGS := -Os
 
 LOCAL_SRC_FILES := \
 	feature.c \
@@ -24,11 +25,11 @@ LOCAL_SRC_FILES := \
 	percent.c
 
 
-LOCAL_MODULE := libext2_e2p
+LOCAL_MODULE := libsteam_ext2_e2p
 LOCAL_MODULE_TAGS := eng
-LOCAL_SYSTEM_SHARED_LIBRARIES := libc
+LOCAL_STATIC_LIBRARIES := libc
 
-LOCAL_C_INCLUDES := external/e2fsprogs/lib
+LOCAL_C_INCLUDES := bootable/steam/e2fsprogs/lib
 
 LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_UNISTD_H \
@@ -55,4 +56,4 @@ LOCAL_CFLAGS := -Os -g -W -Wall \
 
 LOCAL_PRELINK_MODULE := false
 
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)

@@ -1,5 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
+LOCAL_CFLAGS := -Os
 
 LOCAL_SRC_FILES := \
 	error_message.c \
@@ -8,10 +9,10 @@ LOCAL_SRC_FILES := \
 	com_err.c \
 	com_right.c
 
-LOCAL_MODULE := libext2_com_err
+LOCAL_MODULE := libsteam_ext2_com_err
 LOCAL_MODULE_TAGS := eng
 
-LOCAL_C_INCLUDES := external/e2fsprogs/lib
+LOCAL_C_INCLUDES := bootable/steam/e2fsprogs/lib
 
 LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_UNISTD_H \
@@ -38,5 +39,5 @@ LOCAL_CFLAGS := -Os -g -W -Wall \
 
 LOCAL_PRELINK_MODULE := false
 
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
 

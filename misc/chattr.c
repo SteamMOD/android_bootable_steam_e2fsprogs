@@ -54,7 +54,7 @@
 #include "../version.h"
 #include "nls-enable.h"
 
-static const char * program_name = "chattr";
+extern char * program_name;
 
 static int add;
 static int rem;
@@ -294,6 +294,8 @@ int main (int argc, char ** argv)
 	int i, j;
 	int end_arg = 0;
 	int err, retval = 0;
+  char* prgstr = "chattr";
+  program_name = prgstr;
 
 #ifdef ENABLE_NLS
 	setlocale(LC_MESSAGES, "");

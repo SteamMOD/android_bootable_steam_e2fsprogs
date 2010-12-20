@@ -1,5 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
+LOCAL_CFLAGS := -Os
 
 LOCAL_SRC_FILES := \
 	extent.c \
@@ -8,7 +9,7 @@ LOCAL_SRC_FILES := \
 	online.c \
 	sim_progress.c
 
-LOCAL_C_INCLUDES := external/e2fsprogs/lib
+LOCAL_C_INCLUDES := bootable/steam/e2fsprogs/lib
 
 LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_UNISTD_H \
@@ -31,12 +32,13 @@ LOCAL_CFLAGS := -Os -g -W -Wall \
 	-DHAVE_LSEEK64_PROTOTYPE \
 	-DHAVE_EXT2_IOCTLS \
 	-DHAVE_LINUX_FD_H \
-	-DHAVE_TYPE_SSIZE_T
+	-DHAVE_TYPE_SSIZE_T \
+	-Dmain=steam_resize2fs_main
 
 
-LOCAL_MODULE := resize2fs
+LOCAL_MODULE := libsteam_resize2fs
 LOCAL_MODULE_TAGS := eng
-LOCAL_SYSTEM_SHARED_LIBRARIES := libext2fs libext2_com_err libext2_e2p libc
+LOCAL_STATIC_LIBRARIES := libsteam_ext2fs libsteam_ext2_com_err libsteam_ext2_e2p libc
 
 
-include $(BUILD_EXECUTABLE)
+include $(BUILD_STATIC_LIBRARY)

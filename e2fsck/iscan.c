@@ -29,7 +29,7 @@
 
 extern int isatty(int);
 
-const char * program_name = "iscan";
+extern char * program_name;
 const char * device_name = NULL;
 
 int yflag = 0;
@@ -94,6 +94,7 @@ static void PRS(int argc, char *argv[])
 
 int main (int argc, char *argv[])
 {
+  char* prgname = "iscan";
 	errcode_t	retval = 0;
 	int		exit_value = FSCK_OK;
 	ext2_filsys	fs;
@@ -101,6 +102,7 @@ int main (int argc, char *argv[])
 	__u32	num_inodes = 0;
 	struct ext2_inode inode;
 	ext2_inode_scan	scan;
+  program_name = prgname;
 
 	init_resource_track(&global_rtrack);
 
